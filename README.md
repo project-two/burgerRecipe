@@ -25,7 +25,9 @@ rails db:migrate db:seed
 this project does not have scope for test
 
 * repo branch setup
-
+please use feature branch to commit update
+after approve, changes will merge to develop branch
+master branch is for deployment
 
 * Services (job queues, cache servers, search engines, etc.)
 
