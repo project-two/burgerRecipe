@@ -1,7 +1,7 @@
 import React from 'react'
 import {Router} from '@reach/router'
 // Pages
-import Home from '../pages/Home'
+import Home from '../pages/Home/Home'
 import Profile from '../pages/Profile'
 import Login from '../pages/Login'
 import SignUp from '../pages/SignUp'
