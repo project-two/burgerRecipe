@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-function Profile() {
-    return (
-        <div>
-            <h3>Hello username</h3>
-        </div>
-    )
+
+class Profile extends Component {
+    state = {  }
+    render() { 
+        return ( 
+            <div className="container">
+                <p>Hello {this.props.user.name} </p>
+            </div>
+         );
+    }
 }
-
-export default Profile
+ 
+export default Profile;

@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
+import { Link } from '@reach/router';
 
-const Home = () => {
-    return (
-        <div>
-            <h3>Home</h3>
-        </div>
-    )
-}
-
-export default Home
+export default () => (
+    <div>
+        <Link to="/login"></Link>
+        
+    </div>
+)
