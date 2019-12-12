@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react';
+import LoginForm from '../components/loginForm';
 
-const Login = () => {
-    return (
-        <div>
-            <h3>Login</h3>
-        </div>
-    )
+class Login extends Component {
+     
+    handleLoginClick(email, password) {
+        this.props.user.login(email, password);
+    }
+
+    render() {
+        return (<>
+            <LoginForm errMessage={ this.props.user.loginErrorMessage
+            } login={(email, pass)=>this.handleLoginClick(email, pass)}></LoginForm>
+        </>)
+    }
 }
-
-export default Login
+ 
+export default Login;
