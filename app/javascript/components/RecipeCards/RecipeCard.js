@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Home = () => {
+function RecipeCard() {
     return (
         <div>
-            <h3>Home</h3>
+            
         </div>
     )
 }
 
-export default Home
+export default RecipeCard
