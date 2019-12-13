@@ -4,14 +4,16 @@
     <title>BurgerRecipe</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,700|Pacifico&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= javascript_pack_tag 'Index' %>
+    
   </head>
 
   <body>
     <%= yield %>
+  <script src="https://kit.fontawesome.com/eed77b8df3.js" crossorigin="anonymous"></script>
   </body>
 </html>

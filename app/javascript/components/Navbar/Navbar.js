@@ -1,15 +1,39 @@
-import React from 'react'
-import {Link} from '@reach/router'
+import React, { Component } from 'react';
+import { NavBarContainer,LinkContainer } from './NavbarStyled'
+import { StyledLink } from '../../components/GlobalStyles/GlobalStyles'
 
-function Navbar() {
-    return (
-        <nav>
-            <Link to='/'>Home</Link>{' | '}
-            <Link to='/user/:user_id'>Profile</Link>{' | '}
-            <Link to='/login'>Login</Link>{' | '}
-            <Link to='/sign-up'>Sign Up</Link>
-        </nav>
-    )
+class Navbar extends Component {
+    
+    handleLogoutClick(event) {
+        event.preventDefault();
+        this.props.user.logout();
+    }
+
+    render() { 
+        const user = this.props.user;
+        return ( 
+            <NavBarContainer>
+                <LinkContainer>
+                    <StyledLink to="/"><i className="fas fa-hamburger fa-2x"></i></StyledLink>
+                    <StyledLink to="/user/:user_id">My Recipes</StyledLink>
+                </LinkContainer>
+                { !user.isLoggedIn ?
+                    <div>
+                        <StyledLink to="/login">Login</StyledLink>
+                        <StyledLink to="/sign-up">Sign Up</StyledLink>
+                    </div>
+                    : null
+                }
+                { user.isLoggedIn && user.currentUser ?
+                    <React.Fragment>
+                        {user.currentUser.name}<br />
+                        <a href="#" onClick={(e)=>this.handleLogoutClick(e)}>logout</a>
+                    </React.Fragment>
+                    :null
+                }
+            </NavBarContainer>
+        );
+    }
 }
-
-export default Navbar
+ 
+export default Navbar;
