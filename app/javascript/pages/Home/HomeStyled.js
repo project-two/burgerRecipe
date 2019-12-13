@@ -8,9 +8,11 @@ export const HomeHeroSection = styled.div`
         url('https://images.unsplash.com/photo-1534790566855-4cb788d389ec?ixlib=r-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80');
     background-position: center;
     background-size: cover;
-    height: 400px;
+    height: 500px;
     display: flex;
     flex-direction: column;
-    
+    justify-content: center;
     align-items: center;
+    
+    // margin-top: -80px
 `;

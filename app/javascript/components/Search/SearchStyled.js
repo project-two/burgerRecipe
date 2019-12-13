@@ -10,9 +10,6 @@ export const SearchBox = styled.div`
     -webkit-box-shadow: 8px 8px 10px -5px rgba(51,51,51,1);
     -moz-box-shadow: 8px 8px 10px -5px rgba(51,51,51,1);
     box-shadow: 8px 8px 10px -5px rgba(51,51,51,1);
-    
-    
-    
 `; 
 
 export const SearchLable = styled.label`
@@ -29,7 +26,6 @@ export const SearchInput = styled.input`
     &:focus {
         outline: none;
     }
-
     &::placeholder {
         color: #999;
     }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Router, navigate} from '@reach/router'
 // Pages
 import Home from '../pages/Home/Home'
-import Profile from '../pages/Profile'
+import MyRecipes from '../pages/MyRecipes/MyRecipes'
 import Login from '../pages/Login'
 import SignUp from '../pages/SignUp'
 
@@ -82,7 +82,7 @@ class App extends Component {
     
                 <Router>
                     <Home path='/'/>
-                    <Profile path='/user/:user_id' user={userProps} />
+                    <MyRecipes path='/user/:user_id' user={userProps}  logo/>
                     <Login path='/login' user={userProps} />
                     <SignUp path='/sign-up' user={userProps} />
                 </Router>
