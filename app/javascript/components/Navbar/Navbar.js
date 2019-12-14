@@ -17,7 +17,8 @@ class Navbar extends Component {
             <NavBarContainer>
                 <LinkContainer>
                     <StyledLink to="/"><i className="fas fa-hamburger fa-2x"></i></StyledLink>
-                    <StyledLink to="/user/:user_id">Recipes</StyledLink>
+                     
+                    
                 </LinkContainer>
                 { !user.isLoggedIn ?
                     <div>
@@ -28,6 +29,7 @@ class Navbar extends Component {
                 }
                 { user.isLoggedIn && user.currentUser ?
                     <React.Fragment>
+                        <StyledLink to="/user/:user_id">Your Recipes</StyledLink>
                         <StyledLink to='' onClick={(e)=>this.handleLogoutClick(e)}>{user.currentUser.name} logout</StyledLink>
                     </React.Fragment>
                     :null
