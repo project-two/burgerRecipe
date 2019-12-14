@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorize_request, only: [:update_user, :delete_user, :get_token]
+  before_action :authorize_request, only: [:update_user, :delete_user]
 
   def create_user
     userParams = params.require(:user)
