@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   delete "api/users/:user_id" => "users#delete_user"
   post "api/auth/get_token" => "users#get_token" #log in
 
-  delete "api/like_recipes" => "api/like_recipes#destroy"
   namespace :api do
-    resources :recipes, only: [:index]
+    resources :recipes, only: [:index, :create]
     resources :like_recipes, only: [:index, :create]
-    resources :ingredients, only: [:index, :show]
+    delete "like_recipes" => "like_recipes#destroy"
+    resources :ingredients, only: [:index, :show, :create]
   end
   # entry point of react page
   root "homepage#index"
