@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { RecipeImage,RecipeCardContainer,RecipeDetailsContainer,RecipeDetails,RecipeLink} from "./RecipeCardStyled";
 
 
@@ -17,5 +18,12 @@ function RecipeCard(props) {
     </RecipeCardContainer>
   );
 }
+
+// RecipeCard.propTypes = {
+//   image: PropTypes.string.isRequired,
+//   burgerName: PropTypes.string.isRequired,
+//   username: PropTypes.string.isRequired,
+//   likes: PropTypes.number.isRequired,
+// };
 
 export default RecipeCard;
