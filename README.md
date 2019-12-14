@@ -35,6 +35,10 @@ master branch is for deployment
 
 ## api links
 
+* `localhost:3000/api/users/10`
+
+  get user name
+
 * `localhost:3000/api/recipes`
 
   all recipes
