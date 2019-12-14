@@ -18,7 +18,6 @@ export const Logo = styled.h1`
 export const StyledLink = styled(Link)`
     
     font-family: ${props => props.logo ? 'Pacifico': 'Montserrat' };
-
     font-weight: 700;
     text-decoration: none;
     color: rgb(70, 70, 70);
@@ -27,3 +26,4 @@ export const StyledLink = styled(Link)`
         color: #000;
     }
 `
+
