@@ -1,7 +1,15 @@
 class Api::LikeRecipesController < ApplicationController
   def index
     if request.query_parameters.key?("count")
-      render json: LikeRecipe.count, status: :ok
+      if request.query_parameters.key?("recipe")
+        render json: LikeRecipe.where("recipe_id": request.query_parameters["recipe"]).count, status: :ok
+      else
+        render json: LikeRecipe.count, status: :ok
+      end
+    elsif request.query_parameters.key?("recipe")
+      render json: LikeRecipe.where("recipe_id": request.query_parameters["recipe"]), status: :ok
+    elsif request.query_parameters.key?("user")
+      render json: LikeRecipe.where("user_id": request.query_parameters["user"]), status: :ok
     else
       render json: LikeRecipe.all, status: :ok
     end
