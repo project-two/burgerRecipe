@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorize_request, only: [
-                                      :get_by_id, :update_user, :delete_user,
-                                    ]
+  before_action :authorize_request, only: [:update_user, :delete_user, :get_token]
 
   def create_user
     userParams = params.require(:user)
@@ -17,9 +15,8 @@ class UsersController < ApplicationController
 
   def get_by_id
     user = User.find_by(id: params[:user_id])
-
     if user
-      render json: user, status: :ok
+      render json: user.name, status: :ok
     else
       render json: { errors: "User not found" }, status: :not_found
     end
