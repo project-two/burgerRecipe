@@ -33,4 +33,13 @@ master branch is for deployment
 
 * Deployment instructions
 
-* ...
+## api links
+
+| link                                           | Usage                                           | return  |
+| ---------------------------------------------- | ----------------------------------------------- | -----|
+| localhost:3000/api/users/10                    | get user name | kay |
+| localhost:3000/api/recipes                     | all recipes       |  |
+| localhost:3000/api/like_recipes?count          | gives all likes count | 3 |
+| localhost:3000/api/like_recipes?count&recipe=8 | gives likes count on one recipe| 1 |
+| localhost:3000/api/like_recipes?recipe=8       | gives details likes on one recipe (who liked it)||
+| localhost:3000/api/like_recipes?user=10        | details likes on one user (liked what recipes)||

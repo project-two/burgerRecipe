@@ -12,7 +12,7 @@ const Home = () => {
         <Search />
       </HomeHeroSection>
      
-      <Container><H1>Popular Recipes</H1></Container>
+      <Container><H1 logo>Popular Recipes</H1></Container>
       <Container> 
         <RecipeList />
       </Container>

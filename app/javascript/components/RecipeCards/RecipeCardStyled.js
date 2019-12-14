@@ -50,3 +50,4 @@ export const RecipeLink = styled(Link)`
   text-decoration: none;
   color: rgb(70, 70, 70);
 `;
+
