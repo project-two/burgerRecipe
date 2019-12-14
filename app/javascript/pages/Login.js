@@ -1,21 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import LoginForm from "../components/loginForm";
 
-class Login extends Component {
-  handleLoginClick(email, password) {
+const Login = () => {
+  const handleLoginClick = (email, password) => {
     this.props.user.login(email, password);
-  }
+  };
 
-  render() {
-    return (
-      <>
-        <LoginForm
-          errMessage={this.props.user.loginErrorMessage}
-          login={(email, pass) => this.handleLoginClick(email, pass)}
-        ></LoginForm>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <LoginForm
+        errMessage={this.props.user.loginErrorMessage}
+        login={(email, pass) => handleLoginClick(email, pass)}
+      ></LoginForm>
+    </>
+  );
+};
 
 export default Login;

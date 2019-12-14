@@ -3,8 +3,8 @@ import SignupForm from "../components/signupForm";
 import { navigate } from "@reach/router";
 import axios from "axios";
 
-class SignUp extends Component {
-  handleSignup(data) {
+const SignUp = () => {
+  const handleSignup = (data) => {
     axios
       .post(`/api/users`, {
         user: {
@@ -22,23 +22,21 @@ class SignUp extends Component {
         // Navigate to the home page.
         navigate("/");
       });
-  }
+  };
 
-  handleCancelSignup() {
+  const handleCancelSignup = () => {
     // Navigate to the home page.
     navigate("/");
-  }
+  };
 
-  render() {
-    return (
-      <>
-        <SignupForm
-          onSignup={(data) => this.handleSignup(data)}
-          onCancelClick={() => this.handleCancelSignup()}
-        ></SignupForm>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <SignupForm
+        onSignup={(data) => handleSignup(data)}
+        onCancelClick={() => handleCancelSignup()}
+      ></SignupForm>
+    </>
+  );
+};
 
 export default SignUp;
