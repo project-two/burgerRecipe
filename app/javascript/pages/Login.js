@@ -8,14 +8,13 @@ class Login extends Component {
 
   render() {
     return (
-      <>
         <LoginForm
           errMessage={this.props.user.loginErrorMessage}
-          login={(email, pass) => this.handleLoginClick(email, pass)}
-        ></LoginForm>
-      </>
+          login={(email, pass) => this.handleLoginClick(email, pass)}>
+        </LoginForm>
     );
   }
 }
 
 export default Login;
+
