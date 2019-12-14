@@ -6,7 +6,7 @@ import axios from "axios";
 class SignUp extends Component {
   handleSignup(data) {
     axios
-      .post(`http://localhost:3000/api/users`, {
+      .post(`/api/users`, {
         user: {
           name: data.name,
           email: data.email,
@@ -14,7 +14,7 @@ class SignUp extends Component {
           password_confirmation: data.password_confirmation
         }
       })
-      .then(response => {
+      .then((response) => {
         // TODO: use a toast service, or modal or something
         // better than an allert.
         alert("user successfully created, please login");
@@ -33,7 +33,7 @@ class SignUp extends Component {
     return (
       <>
         <SignupForm
-          onSignup={data => this.handleSignup(data)}
+          onSignup={(data) => this.handleSignup(data)}
           onCancelClick={() => this.handleCancelSignup()}
         ></SignupForm>
       </>
