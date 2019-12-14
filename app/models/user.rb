@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
 
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
+  validates :email, uniqueness: true
+
+  has_many :recipes
+  has_many :like_recipes
 end
