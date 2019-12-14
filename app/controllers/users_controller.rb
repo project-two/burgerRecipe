@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     end
 
     def get_by_id
-        user = User.find(params[:user_id])
+        user = User.find_by(id: params[:user_id])
 
         if user
 
@@ -28,9 +28,40 @@ class UsersController < ApplicationController
     end
 
     def update_user
+        user = User.find_by(id: params[:user_id])
+        if user
+
+            userParams = params.require(:user)
+            .permit(:name, :email, :password, :password_confirmation)
+
+            user.name = userParams["name"]
+            user.email = userParams["email"]
+            user.password = userParams["password"]
+            user.password_confirmation = userParams["password_confirmation"]
+
+            if user.save()
+                render json: user, status: :ok 
+            else
+                render json: {errors: "update failed"}, status: :bad_request
+            end
+        else
+            render json: { errors: 'User not found' }, status: :not_found
+        end
+        
     end
 
     def delete_user
+        user = User.find_by(id: params[:user_id])
+        if user
+
+            if user.destroy()
+                render json: {message: "user deleted"}, status: :ok
+            else
+                render json: {errors: "delete failed"}, status: :bad_request
+            end
+    else
+        render json: { errors: 'User not found' }, status: :not_found
+    end
     end
 
     def get_token
