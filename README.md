@@ -33,7 +33,11 @@ master branch is for deployment
 
 * Deployment instructions
 
-api links
+## api links
+
+* `localhost:3000/api/recipes`
+
+  all recipes
 
 * `localhost:3000/api/like_recipes?count`
 
