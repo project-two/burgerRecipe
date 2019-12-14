@@ -34,7 +34,19 @@ master branch is for deployment
 * Deployment instructions
 
 api links
-localhost:3000/api/like_recipes?count gives all likes count
-localhost:3000/api/like_recipes?count?recipe=8 gives likes count on one recipe
-localhost:3000/api/like_recipes?recipe=8  gives details likes on one recipe (who liked it)
-localhost:3000/api/like_recipes?user=10  gives details likes on one user (liked what recipes) (edited) 
+
+* `localhost:3000/api/like_recipes?count`
+
+  gives all likes count
+
+* `localhost:3000/api/like_recipes?count?recipe=8`
+
+  gives likes count on one recipe
+
+* `localhost:3000/api/like_recipes?recipe=8`
+
+  gives details likes on one recipe (who liked it)
+ 
+* `localhost:3000/api/like_recipes?user=10`
+
+  gives details likes on one user (liked what recipes) (edited) 
