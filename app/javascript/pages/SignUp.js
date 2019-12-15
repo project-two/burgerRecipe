@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import SignupForm from "../components/signupForm";
 import { navigate } from "@reach/router";
 import axios from "axios";
@@ -15,8 +15,6 @@ const SignUp = () => {
         }
       })
       .then((response) => {
-        // TODO: use a toast service, or modal or something
-        // better than an allert.
         alert("user successfully created, please login");
 
         // Navigate to the home page.
@@ -24,7 +22,7 @@ const SignUp = () => {
       });
   };
 
-  const handleCancelSignup = () => {
+  const handleCancelSignup = (e) => {
     // Navigate to the home page.
     navigate("/");
   };
@@ -33,7 +31,7 @@ const SignUp = () => {
     <>
       <SignupForm
         onSignup={(data) => handleSignup(data)}
-        onCancelClick={() => handleCancelSignup()}
+        onCancel={(e) => handleCancelSignup(e)}
       ></SignupForm>
     </>
   );
