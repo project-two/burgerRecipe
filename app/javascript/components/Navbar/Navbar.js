@@ -23,14 +23,15 @@ class Navbar extends Component {
             <StyledLink to="/sign-up">Sign Up</StyledLink>
           </div>
         ) : null}
-        { user.isLoggedIn && user.currentUser ?
-            <React.Fragment>
-                <StyledLink to="/user/:user_id">My Recipes</StyledLink>
-                <StyledLink to="/new-recipe">Add new Recipe</StyledLink>
-                <StyledLink to='' onClick={(e)=>this.handleLogoutClick(e)}>{user.currentUser.name} logout</StyledLink>
-            </React.Fragment>
-            :null
-        }
+        {user.isLoggedIn && user.currentUser ? (
+          <React.Fragment>
+            <StyledLink to="/user/:user_id">My Recipes</StyledLink>
+            <StyledLink to="/new-recipe">Add new Recipe</StyledLink>
+            <StyledLink to="" onClick={(e) => this.handleLogoutClick(e)}>
+              {this.props.user.currentUser} logout
+            </StyledLink>
+          </React.Fragment>
+        ) : null}
       </NavBarContainer>
     );
   }
