@@ -45,3 +45,4 @@ master branch is for deployment
 | localhost:3000/api/like_recipes?user=10        | details likes on one user (liked what recipes)||
 | localhost:3000/api/ingredients/3               | ingredient details | |
 | localhost:3000/api/ingredients/3?name          | ingredient name    | chicken |
+| localhost:3000/api/recipes?user=10             | get recipe of a user| |
