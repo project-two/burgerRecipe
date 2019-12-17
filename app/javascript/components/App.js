@@ -87,7 +87,7 @@ class App extends Component {
 
         <Router>
           <Home path="/" />
-          <MyRecipes path="/user/:user_id" user={userProps} logo />
+          <MyRecipes path="/user/:user_id"/>
           <CreateRecipeForm path="/new-recipe" user={userProps} />
           <Recipe path="/recipe/:recipe_id" user={userProps} />
           <Login path="/login" user={userProps} />
