@@ -33,7 +33,6 @@ export const RecipeImage = styled.img`
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius-top-right: 20px;
 `;
 export const RecipeDetailsContainer = styled.div`
   padding: 10px;
@@ -50,3 +49,4 @@ export const RecipeLink = styled(Link)`
   text-decoration: none;
   color: rgb(70, 70, 70);
 `;
+
