@@ -46,3 +46,4 @@ master branch is for deployment
 | localhost:3000/api/ingredients/3               | ingredient details | |
 | localhost:3000/api/ingredients/3?name          | ingredient name    | chicken |
 | localhost:3000/api/recipes?user=10             | get recipe of a user| |
+| localhost:3000/api/recipes?recipe=8            | get details of a recipe | |
