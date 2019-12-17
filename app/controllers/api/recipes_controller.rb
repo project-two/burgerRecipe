@@ -13,4 +13,8 @@ class Api::RecipesController < ApplicationController
     end
     render json: recipes_json, status: :ok
   end
+
+  def create
+    render json: { message: "ok" }, status: :ok
+  end
 end
