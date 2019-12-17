@@ -19,19 +19,6 @@ class CreateRecipeForm extends Component {
     this.onDrop = this.onDrop.bind(this);
   }
 
-  //This function is not working because import @reach/router is not working
-  //in CreateRecipe folder
-  onCancelClick() {
-    this.props.onCancelClick(this.state);
-  }
-
-  //This function is not working because import @reach/router is not working
-  //in CreateRecipe folder
-  // onAddRecipeClick() {
-  //   // TODO: validate inputs
-  //   this.props.onAddRecipeClick(this.state);
-  // }
-
   handleBurgerNameChange(e) {
     this.setState({ burgerName: e.target.value });
   }
@@ -49,16 +36,6 @@ class CreateRecipeForm extends Component {
       image: this.state.pictures.concat(image)
     });
   }
-
-  handleSubmit = (e) => {
-    console.log(
-      "A recipe was submitted: " +
-        this.state.burgerName +
-        this.state.ingredients +
-        this.state.method
-    );
-    event.preventDefault();
-  };
 
   render() {
     let { burgerName, image, ingredients, method } = this.state;
@@ -119,10 +96,18 @@ class CreateRecipeForm extends Component {
           </div>
 
           <div className="clearfix">
-            <button type="button" onCancel={() => this.onCancelClick()}>
-              Cancel
+            <button
+              type="submit"
+              onClick={(e) =>
+                this.props.onAddRecipeClick(e, {
+                  burger: this.state.burgerName,
+                  ingredients: this.state.ingredients,
+                  methid: this.state.method
+                })
+              }
+            >
+              Add recipe
             </button>
-            <button type="submit">Add recipe</button>
           </div>
         </form>
       </div>

@@ -4,8 +4,10 @@ import { navigate } from "@reach/router";
 import axios from "axios";
 
 const CreateRecipe = () => {
-  const handleCreateRecipe = (e) => {
+  const handleCreateRecipe = (e, data) => {
+    e.preventDefault();
     console.log("I am called");
+    console.log(data);
     //e.preventDefault(e);
     //   axios
     //     .post(`/to-be-changed`,{
@@ -24,17 +26,7 @@ const CreateRecipe = () => {
     //     });
   };
 
-  const handleCancelCreateRecipe = (e) => {
-    console.log("I am click");
-    // Navigate to my recipe.
-    //navigate("/user/:user_id");
-  };
-  return (
-    <CreateRecipeForm
-      onAddRecipeClick={(data) => handleCreateRecipe(data)}
-      onCancelClick={(e) => handleCancelCreateRecipe(e)}
-    ></CreateRecipeForm>
-  );
+  return <CreateRecipeForm onAddRecipeClick={handleCreateRecipe} />;
 };
 
 export default CreateRecipe;
