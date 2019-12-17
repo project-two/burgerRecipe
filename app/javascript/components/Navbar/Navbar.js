@@ -10,6 +10,7 @@ class Navbar extends Component {
 
   render() {
     const user = this.props.user;
+
     return (
       <NavBarContainer>
         <LinkContainer>

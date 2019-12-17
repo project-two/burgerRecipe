@@ -32,10 +32,10 @@ export const SearchInput = styled.input`
 `;
 
 export const SearchButton = styled.button`
-    align-self: flex-end
+    align-self: flex-end;
     width: 30px;
     height: 30px;
-    margin: 0 10px
+    margin: 0 10px;
     border: none;
     cursor: pointer;
 `

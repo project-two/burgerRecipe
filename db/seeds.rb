@@ -52,3 +52,9 @@ puts "seeding Recipe, created #{Recipe.all.length}"
 LikeRecipe.create(user_id: kay.id, recipe_id: r1.id)
 LikeRecipe.create(user_id: kay.id, recipe_id: r2.id)
 LikeRecipe.create(user_id: kay.id, recipe_id: r3.id)
+puts "seeding likes, created #{LikeRecipe.all.length}"
+
+#seed ingredients
+Ingredient.create(name: "beef")
+Ingredient.create(name: "onion")
+Ingredient.create(name: "chicken")
