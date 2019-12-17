@@ -3,7 +3,7 @@ import { Router, navigate } from "@reach/router";
 // Pages
 import Home from "../pages/Home/Home";
 import MyRecipes from "../pages/MyRecipes/MyRecipes";
-import CreateRecipeForm from "../pages/CreateRecipe/CreateRecipeForm";
+import CreateRecipe from "../pages/CreateRecipe/CreateRecipe";
 import Recipe from "../pages/Recipe/Recipe";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
@@ -63,7 +63,7 @@ class App extends Component {
         this.setState({
           loginErrorMessage: "Fail to login. Pleaes try again!"
         });
-        //nevigate to the page navigate('/register');
+        navigate("/sign-up");
       });
   }
 
@@ -88,7 +88,7 @@ class App extends Component {
         <Router>
           <Home path="/" />
           <MyRecipes path="/user/:user_id" user={userProps} logo />
-          <CreateRecipeForm path="/new-recipe" user={userProps} />
+          <CreateRecipe path="/new-recipe" user={userProps} />
           <Recipe path="/recipe/:recipe_id" user={userProps} />
           <Login path="/login" user={userProps} />
           <SignUp path="/sign-up" user={userProps} />
