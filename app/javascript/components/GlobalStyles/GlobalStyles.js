@@ -16,7 +16,6 @@ export const Logo = styled.h1`
     margin: 0 0 20px;
 `
 export const StyledLink = styled(Link)`
-    
     font-family: ${props => props.logo ? 'Pacifico': 'Montserrat' };
     font-weight: 700;
     text-decoration: none;

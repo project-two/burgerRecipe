@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "@reach/router";
 
-// RecipeCardList styles
+// RecipeList styles
 export const RecipesContainer = styled.div`
   display: flex;
   justify-content: center;
