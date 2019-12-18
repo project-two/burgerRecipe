@@ -13,35 +13,27 @@ import { number } from "prop-types";
 
 class Recipe extends Component {
   state = {
-    recipe: {
-      burgerName: "The Pace Maker",
-      userName: "Kay",
-      image:
-        "https://images.unsplash.com/photo-1428660386617-8d277e7deaf2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80",
-      likes: 150,
-      ingredients: ["Cheese", "Fish", "Chilli"],
-      method: ["Frying", "Toppings", "Eat"]
-    },
-
+    recipe: [],
+    ingredients: [],
     liked: false
   };
 
   componentDidMount() {
-    
-    //   axios
-    //     .get("")
-    //     .then(function(response) {
-    //       //handle success})
-    //       this.setState({ image: response });
-    //       console.log(response);
-    //     })
-    //     .catch(function(error) {
-    //       // handle error
-    //       console.log(error);
-    //     });
+    let currentRecipe = this.props.recipeId;
+    console.log(currentRecipe)
+    axios.get(`/api/recipes?recipe=${currentRecipe}`) 
+        .then( res => { 
+            console.log(res.data)
+            this.setState({ recipe: res.data })
+        })
+        .catch( error =>  {
+            console.log(error); 
+    })
   }
 
   likeVoteHandler = () => {
+    // post 
+    
     !this.state.liked
       ? this.setState({ liked: true })
       : this.setState({ liked: false });
@@ -53,33 +45,32 @@ class Recipe extends Component {
   };
 
   render() {
+    const recipe = this.state.recipe;
     return (
       <RecipeContainer>
         <PostDetailsContainer>
-          <BurgerName> {this.state.recipe.burgerName} </BurgerName>
-          <p>by {this.state.recipe.userName} </p>
-          <RecipeImage src={this.state.recipe.image} />
-          <LikesContainer onClick={this.likeVoteHandler}>
-            {!this.state.liked ? (
-              <i className="far fa-thumbs-up fa-lg"></i>
-            ) : (
-              <i className="fas fa-thumbs-up fa-lg"></i>
-            )}
-            <span> {this.state.recipe.likes} </span>
-          </LikesContainer>
+          {recipe.map(ele => <BurgerName>{ele.name}</BurgerName>)}
+          {recipe.map(ele => <p>by {ele.username}</p>)}
+          {recipe.map(ele => <RecipeImage src={ele.url}/>)}
+          
+          {recipe.map(ele => <LikesContainer onClick={this.likeVoteHandler}/>)}
+            {!this.state.liked ? ( <i className="far fa-thumbs-up fa-lg"></i> ) : 
+            ( <i className="fas fa-thumbs-up fa-lg"></i> )}
+          {recipe.map(ele => <span>{ele.like_count}</span>)}
         </PostDetailsContainer>
+        
         <PostMethodContainer>
           <RecipeHeading>Ingredients</RecipeHeading>
           <div>
-            {this.state.recipe.ingredients.map(recipe => (
+            {/* { this.state.recipe.ingredients.map(recipe => (
               <p>{recipe}</p>
-            ))}
+            ))} */}
           </div>
           <RecipeHeading>Method</RecipeHeading>
           <div>
-            {this.state.recipe.method.map(method => (
+            {/* {this.state.recipe.method.map(method => (
               <p>{method}</p>
-            ))}
+            ))} */}
           </div>
         </PostMethodContainer>
       </RecipeContainer>
@@ -88,3 +79,12 @@ class Recipe extends Component {
 }
 
 export default Recipe;
+
+
+// name: "The Pace Maker",
+// userName: "Kay",
+// image:
+//   "https://images.unsplash.com/photo-1428660386617-8d277e7deaf2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80",
+// likes: 150,
+// ingredients: ["Cheese", "Fish", "Chilli"],
+// method: ["Frying", "Toppings", "Eat"]

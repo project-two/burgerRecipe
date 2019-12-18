@@ -7,12 +7,14 @@ const RecipeList = (props) => {
     return (
         <div>
             <RecipesContainer>
-                {props.recipe.map((recipe, index) => 
+                {props.recipe.map((recipe) => 
                     <RecipeCard 
                     image={recipe.url}
                     burgerName={recipe.name}
                     recipeId={recipe.id}
-                    username={props.username[index]}
+                    username={recipe.username}
+                    likes={recipe.like_count}
+                    key={recipe.id}
                     />
                )}
             </RecipesContainer>

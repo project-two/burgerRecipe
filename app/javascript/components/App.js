@@ -22,18 +22,19 @@ class App extends Component {
     this.state = {
       isLoggedIn: !!auth ? true : false,
       currentUser: null,
+      currentUserId: null,
       loginErrorMessage: ""
     };
   }
 
   componentDidMount() {
     this.getUser();
+    
   }
 
-  getUser() {
+  getUser = () => {
     let auth = JSON.parse(sessionStorage.getItem("auth"));
     if (!auth) return;
-
     axios
       .get(`${SERVER_URL}/api/users/${auth.userId}`, {
         headers: { Authorization: `Bearer ${auth.token}` }
@@ -41,15 +42,17 @@ class App extends Component {
       .then((response) => {
         this.setState({
           currentUser: response.data,
+          currentUserId: auth.userId,
           isLoggedIn: true
-        });
 
+          
+        });
         // now that login has occured, navigate to the home page
         navigate("/");
       });
   }
 
-  handleLogin(email, password) {
+  handleLogin = (email, password) => {
     axios
       .post(`/api/auth/get_token`, {
         email: email,
@@ -67,31 +70,34 @@ class App extends Component {
       });
   }
 
-  handleLogout() {
+  handleLogout = () => {
     sessionStorage.setItem("auth", null);
     this.setState({ currentUser: null, isLoggedIn: false });
   }
 
   render() {
-    const userProps = {
+  
+    const userDetails = {
       isLoggedIn: this.state.isLoggedIn,
       loginErrorMessage: this.state.loginErrorMessage,
       currentUser: this.state.currentUser,
+      currentUserId: this.state.currentUserId,
+
       logout: () => this.handleLogout(),
       login: (email, pass) => this.handleLogin(email, pass)
     };
 
     return (
       <React.Fragment>
-        <Navbar user={userProps}></Navbar>
+        <Navbar user={userDetails}></Navbar>
 
         <Router>
-          <Home path="/" />
-          <MyRecipes path="/user/:user_id" user={userProps} logo />
-          <CreateRecipe path="/new-recipe" user={userProps} />
-          <Recipe path="/recipe/:recipe_id" user={userProps} />
-          <Login path="/login" user={userProps} />
-          <SignUp path="/sign-up" user={userProps} />
+          <Home path="/"/>
+          <MyRecipes path="/user/:userId" user={userDetails} logo />
+          <CreateRecipe path="/new-recipe" user={userDetails} />
+          <Recipe path="/recipe/:recipeId" user={userDetails} />
+          <Login path="/login" user={userDetails} />
+          <SignUp path="/sign-up" user={userDetails} />
         </Router>
       </React.Fragment>
     );
