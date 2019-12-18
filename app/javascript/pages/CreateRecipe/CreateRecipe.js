@@ -2,6 +2,8 @@ import React from "react";
 import CreateRecipeForm from "../CreateRecipe/CreateRecipeForm";
 import { navigate } from "@reach/router";
 import axios from "axios";
+import ImageUpload from 'react-images-upload'
+
 
 const CreateRecipe = () => {
   const handleCreateRecipe = (e, data) => {

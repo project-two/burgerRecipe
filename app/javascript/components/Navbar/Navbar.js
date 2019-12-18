@@ -26,10 +26,10 @@ class Navbar extends Component {
         ) : null}
         {user.isLoggedIn && user.currentUser ? (
           <React.Fragment>
-            <StyledLink to="/user/:user_id">My Recipes</StyledLink>
+            <StyledLink to={`/user/${user.currentUserId}`}>{this.props.user.currentUser}'s Recipes</StyledLink>
             <StyledLink to="/new-recipe">Add new Recipe</StyledLink>
             <StyledLink to="" onClick={(e) => this.handleLogoutClick(e)}>
-              {this.props.user.currentUser} logout
+               Logout
             </StyledLink>
           </React.Fragment>
         ) : null}

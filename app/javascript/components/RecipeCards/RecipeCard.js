@@ -5,18 +5,18 @@ import { RecipeImage,RecipeCardContainer,RecipeDetailsContainer,RecipeDetails,Re
 
 function RecipeCard(props) {
 
-  return (
-    <RecipeCardContainer>
-        <RecipeLink to={`/recipe/${props.recipeId}`}> 
-            <RecipeImage src={props.image} />
-            <RecipeDetailsContainer>
-            <RecipeDetails>{props.burgerName}</RecipeDetails>  
-            <RecipeDetails light>{props.username}</RecipeDetails>
-                <RecipeDetails light><i className="far fa-thumbs-up"></i> 55 </RecipeDetails>{/* props.likes */}
-            </RecipeDetailsContainer>
-        </RecipeLink>
-    </RecipeCardContainer>
-  );
+    return (
+        <RecipeCardContainer>
+            <RecipeLink to={`/recipe/${props.recipeId}`}> 
+                <RecipeImage src={props.image} />
+                <RecipeDetailsContainer>
+                <RecipeDetails>{props.burgerName}</RecipeDetails>  
+                <RecipeDetails light>{props.username}</RecipeDetails>
+                <RecipeDetails light><i className="far fa-thumbs-up"></i> {props.likes}</RecipeDetails>
+                </RecipeDetailsContainer>
+            </RecipeLink>
+        </RecipeCardContainer>
+    );
 }
 
 

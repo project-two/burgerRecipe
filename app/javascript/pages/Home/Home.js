@@ -11,7 +11,6 @@ export default class Home extends Component {
 
     state = {
         recipe: [],
-        username: []
     }
 
     async componentDidMount() {
@@ -23,21 +22,6 @@ export default class Home extends Component {
             .catch( error =>  {
                 console.log(error); 
             })
-        
-        this.state.recipe.forEach(user => {
-         
-            axios.get(`/api/users/${user.user_id}`) 
-                .then( res => {
-                    
-                this.setState( prevState => ({
-                    username: [...prevState.username, res.data]
-                }))
-            })
-
-            .catch( error =>  {
-                console.log(error); 
-            })
-        })
     }
 
     render() {
@@ -50,7 +34,7 @@ export default class Home extends Component {
                 
                 <Container><H1 logo>Popular Recipes</H1></Container>
                 <Container> 
-                    <RecipeList recipe={this.state.recipe} username={this.state.username} />
+                    <RecipeList recipe={this.state.recipe} />
                 </Container>
                 
             </React.Fragment>
