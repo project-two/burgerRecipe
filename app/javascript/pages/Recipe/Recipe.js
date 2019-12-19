@@ -4,63 +4,62 @@ import {
   RecipeImage,
   RecipeContainer,
   BurgerName,
-  LikesContainer,
   RecipeHeading,
   PostDetailsContainer,
   PostMethodContainer
 } from "./RecipeStyle";
+import Likes from "../Likes/Likes";
 import axios from "axios";
 import { number } from "prop-types";
 
 class Recipe extends Component {
   state = {
-    recipe: [],
+    recipe: {},
     ingredients: [],
     liked: false
   };
 
   componentDidMount() {
+    this.loadRecipe();
+  }
+
+  loadRecipe() {
     let currentRecipe = this.props.recipeId;
-    console.log(currentRecipe)
-    axios.get(`/api/recipes?recipe=${currentRecipe}`) 
-        .then( res => { 
-            console.log(res.data)
-            this.setState({ recipe: res.data })
-        })
-        .catch( error =>  {
-            console.log(error); 
-    })
+    console.log(currentRecipe);
+    axios
+      .get(`/api/recipes?recipe=${currentRecipe}`)
+      .then((res) => {
+        console.log(res.data);
+        this.setState({ recipe: res.data[0] });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   likeVoteHandler = () => {
-    // post 
-    
-    !this.state.liked
-      ? this.setState({ liked: true })
-      : this.setState({ liked: false });
-
-    const currentNumberOfLikes = this.state.recipe.likes;
-    this.setState(prevState => ({
-      recipe: { ...prevState.recipe, likes: currentNumberOfLikes + 1 }
-    }));
+    //TODO post like
+    console.log("clicked!!!, do a post!");
   };
 
   render() {
     const recipe = this.state.recipe;
-    
+
     return (
       <RecipeContainer>
         <PostDetailsContainer>
-          {recipe.map(ele => <BurgerName key={ele.id}>{ele.name}</BurgerName>)}
-          {recipe.map(ele => <p key={ele.id}>by <Link to={`/user/${ele.user_id}`}>{ele.username}</Link></p>)}
-          {recipe.map(ele => <RecipeImage key={ele.id} src={ele.url}/>)}
-          
-          {recipe.map(ele => <LikesContainer key={ele.id} onClick={this.likeVoteHandler}/>)}
-            {!this.state.liked ? ( <i className="far fa-thumbs-up fa-lg"></i> ) : 
-            ( <i className="fas fa-thumbs-up fa-lg"></i> )}
-          {recipe.map(ele => <span key={ele.id}>{ele.like_count}</span>)}
+          <BurgerName>{recipe.name}</BurgerName>
+          <p>
+            by <Link to={`/user/${recipe.user_id}`}>{recipe.username}</Link>
+          </p>
+          <RecipeImage src={recipe.url} />
+          <Likes
+            recipeId={recipe.id}
+            likeCount={recipe.like_count}
+            onClick={() => this.likeVoteHandler()}
+          />
         </PostDetailsContainer>
-        
+
         <PostMethodContainer>
           <RecipeHeading>Ingredients</RecipeHeading>
           <div>
@@ -81,7 +80,6 @@ class Recipe extends Component {
 }
 
 export default Recipe;
-
 
 // name: "The Pace Maker",
 // userName: "Kay",
