@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { navigate } from "@reach/router"
 
 class CreateRecipe extends React.Component {
   constructor(props) {
@@ -66,6 +67,8 @@ class CreateRecipe extends React.Component {
     axios.post(`/api/recipes`, { state })
       .then(res => {
         console.log(res);
+        const recipe_id = res.data.message.recipe_id
+        navigate(`/user/${user_id}`)
       })
     e.preventDefault();
   }
