@@ -10,6 +10,15 @@ class Api::RecipesController < ApplicationController
     recipes_json.each do |recipe|
       recipe["username"] = User.find(recipe["user_id"]).name
       recipe["like_count"] = Recipe.find(recipe["id"]).like_recipes.count
+      recipe["ingredients"] = []
+      ingredients = Recipe.find(recipe["id"]).ingredient_recipes
+      ingredients.each do |ingredient|
+        recipe["ingredients"].push({
+          "qty": ingredient.qty,
+          "unit": ingredient.unit,
+          "name": ingredient.ingredient.name,
+        })
+      end
     end
     render json: recipes_json, status: :ok
   end
@@ -18,12 +27,17 @@ class Api::RecipesController < ApplicationController
     recipe_data = params.require(:state)
     p "!!!!!!"
     p recipe_data
-    Recipe.create(
+    recipe = Recipe.create(
       user_id: recipe_data["user_id"],
       name: recipe_data["recipe"],
       serve: recipe_data["serve"],
       instruction: recipe_data["instructions"],
+      url: recipe_data["url"],
     )
-    render json: { message: "ok" }, status: :ok
+    recipe_data["ingredients"].each do |ingredient|
+      i_name = Ingredient.create(name: ingredient["name"])
+      recipe.ingredient_recipes.create(qty: ingredient["qty"], unit: ingredient["unit"], ingredient_id: i_name.id)
+    end
+    render json: { message: { "recipe_id": recipe.id } }, status: :ok
   end
 end
