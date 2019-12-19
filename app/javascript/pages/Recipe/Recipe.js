@@ -10,55 +10,38 @@ import {
 } from "./RecipeStyle";
 import Likes from "../Likes/Likes";
 import axios from "axios";
-import { number } from "prop-types";
 
 class Recipe extends Component {
   state = {
-    recipe: {},
-    ingredients: [],
-    liked: false
+    recipe: {
+      ingredients: [],
+      instruction:[],
+    },
+    loged_in: false
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.loadRecipe();
-  }
-
-  componentDidUpdate() {
-    this.likeVoteHandler();
   }
 
   loadRecipe() {
     let currentRecipe = this.props.recipeId;
-    console.log(currentRecipe);
     axios
       .get(`/api/recipes?recipe=${currentRecipe}`)
-      .then((res) => {
-        console.log(res.data);
-        this.setState({ recipe: res.data[0] });
+      .then(res => {
+        let data = res.data[0];
+        data["instruction"] = JSON.parse(data["instruction"]);
+        this.setState({ recipe: data });
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
   }
 
-  likeVoteHandler = () => {
-    let user = this.props.user.currentUserId;
-    let recipe = this.props.recipeId;
-    let update = this.state.recipe;
-    axios
-      .post(`/api/like_recipes?user=${user}&recipe=${recipe}`)
-      .then((res) => {
-        console.log(res);
-        this.setState({ recipe: update });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   render() {
     const recipe = this.state.recipe;
-
+    const recipe_id = this.props.recipeId;
+    console.log(recipe_id)
     return (
       <RecipeContainer>
         <PostDetailsContainer>
@@ -67,21 +50,48 @@ class Recipe extends Component {
             by <Link to={`/user/${recipe.user_id}`}>{recipe.username}</Link>
           </p>
           <RecipeImage src={recipe.url} />
-          <Likes
-            recipeId={recipe.id}
-            likeCount={recipe.like_count}
-            onClick={() => this.likeVoteHandler()}
-          />
+          <Likes recipe_id={recipe_id} />
         </PostDetailsContainer>
 
         <PostMethodContainer>
           <RecipeHeading>Ingredients</RecipeHeading>
-          <div>
-            {/* { this.state.recipe.ingredients.map(recipe => (
-              <p>{recipe}</p>
-            ))} */}
-          </div>
+          <table>
+            <thead>
+              <tr>
+                <td>#</td>
+                <td>qty</td>
+                <td>unit</td>
+                <td>name</td>
+              </tr>
+            </thead>
+            <tbody>
+              {recipe.ingredients.map((recipe, idx) => (
+                <tr key={`ingrd_${idx}`}>
+                  <td>{idx}</td>
+                  <td>{recipe.qty}</td>
+                  <td>{recipe.unit}</td>
+                  <td>{recipe.name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <RecipeHeading>Method</RecipeHeading>
+          <table>
+            <thead>
+              <tr>
+                <td>#</td>
+                <td>step</td>
+              </tr>
+            </thead>
+            <tbody>
+              {recipe.instruction.map((step, idx) => (
+                <tr key={`step_${idx}`}>
+                  <td>{idx}</td>
+                  <td>{step}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <div>
             {/* {this.state.recipe.method.map(method => (
               <p>{method}</p>
@@ -94,11 +104,3 @@ class Recipe extends Component {
 }
 
 export default Recipe;
-
-// name: "The Pace Maker",
-// userName: "Kay",
-// image:
-//   "https://images.unsplash.com/photo-1428660386617-8d277e7deaf2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80",
-// likes: 150,
-// ingredients: ["Cheese", "Fish", "Chilli"],
-// method: ["Frying", "Toppings", "Eat"]
