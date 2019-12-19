@@ -23,6 +23,10 @@ class Recipe extends Component {
     this.loadRecipe();
   }
 
+  componentDidUpdate() {
+    this.likeVoteHandler();
+  }
+
   loadRecipe() {
     let currentRecipe = this.props.recipeId;
     console.log(currentRecipe);
@@ -38,8 +42,18 @@ class Recipe extends Component {
   }
 
   likeVoteHandler = () => {
-    //TODO post like
-    console.log("clicked!!!, do a post!");
+    let user = this.props.user.currentUserId;
+    let recipe = this.props.recipeId;
+    let update = this.state.recipe;
+    axios
+      .post(`/api/like_recipes?user=${user}&recipe=${recipe}`)
+      .then((res) => {
+        console.log(res);
+        this.setState({ recipe: update });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   render() {
