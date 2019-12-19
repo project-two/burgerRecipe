@@ -1,5 +1,4 @@
 import React from "react";
-import CreateRecipeForm from "../CreateRecipe/CreateRecipeForm";
 import axios from "axios";
 
 class CreateRecipe extends React.Component {
