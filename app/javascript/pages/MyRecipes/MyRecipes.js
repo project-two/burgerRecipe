@@ -26,6 +26,7 @@ export default class MyRecipes extends Component {
 
     componentDidMount() {
         let currentUser = this.props.userId;
+        console.log(currentUser)
         axios.get(`/api/recipes?user=${currentUser}`) 
             .then( res => { 
                 this.setState({ recipe: res.data })

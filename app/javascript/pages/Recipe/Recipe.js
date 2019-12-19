@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "@reach/router";
 import {
   RecipeImage,
   RecipeContainer,
@@ -46,17 +47,18 @@ class Recipe extends Component {
 
   render() {
     const recipe = this.state.recipe;
+    
     return (
       <RecipeContainer>
         <PostDetailsContainer>
-          {recipe.map(ele => <BurgerName>{ele.name}</BurgerName>)}
-          {recipe.map(ele => <p>by {ele.username}</p>)}
-          {recipe.map(ele => <RecipeImage src={ele.url}/>)}
+          {recipe.map(ele => <BurgerName key={ele.id}>{ele.name}</BurgerName>)}
+          {recipe.map(ele => <p key={ele.id}>by <Link to={`/user/${ele.user_id}`}>{ele.username}</Link></p>)}
+          {recipe.map(ele => <RecipeImage key={ele.id} src={ele.url}/>)}
           
-          {recipe.map(ele => <LikesContainer onClick={this.likeVoteHandler}/>)}
+          {recipe.map(ele => <LikesContainer key={ele.id} onClick={this.likeVoteHandler}/>)}
             {!this.state.liked ? ( <i className="far fa-thumbs-up fa-lg"></i> ) : 
             ( <i className="fas fa-thumbs-up fa-lg"></i> )}
-          {recipe.map(ele => <span>{ele.like_count}</span>)}
+          {recipe.map(ele => <span key={ele.id}>{ele.like_count}</span>)}
         </PostDetailsContainer>
         
         <PostMethodContainer>

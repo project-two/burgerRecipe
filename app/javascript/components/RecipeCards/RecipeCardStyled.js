@@ -46,7 +46,8 @@ export const RecipeDetails = styled.p`
 `;
 
 export const RecipeLink = styled(Link)`
-  text-decoration: none;
-  color: rgb(70, 70, 70);
+  -webkit-text-decoration: none !important;
+  text-decoration: none !important;
+  color: rgb(70, 70, 70) !important;
 `;
 
