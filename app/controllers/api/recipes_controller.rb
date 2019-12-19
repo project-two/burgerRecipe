@@ -15,6 +15,10 @@ class Api::RecipesController < ApplicationController
   end
 
   def create
+    recipe_data = params.require(:state)
+    p "!!!!!!"
+    p recipe_data
+    Recipe
     render json: { message: "ok" }, status: :ok
   end
 end
