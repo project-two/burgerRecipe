@@ -60,13 +60,11 @@ class CreateRecipe extends React.Component {
 
   handleSubmit = e => {
     const user_id = JSON.parse(sessionStorage.getItem("auth")).userId;
-    console.log(this.state)
     let state = this.state
     state["user_id"] = user_id
     axios.post(`/api/recipes`, { state })
       .then(res => {
         console.log(res);
-        console.log(res.data);
       })
     e.preventDefault();
   }
@@ -76,8 +74,6 @@ class CreateRecipe extends React.Component {
     const value = target.value;
     const name = target.name.split('_');
     let state = this.state
-    console.log(name, value)
-    console.log(target.order)
     if (name[0] === "recipe") {
       this.setState({
         [name[0]]: value
