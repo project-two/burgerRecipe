@@ -6,6 +6,7 @@ class CreateRecipe extends React.Component {
     super(props);
     this.state = {
       recipe: "",
+      serve:"",
       instructions: [''],
       ingredients: [
         {
@@ -73,7 +74,7 @@ class CreateRecipe extends React.Component {
     const value = target.value;
     const name = target.name.split('_');
     let state = this.state
-    if (name[0] === "recipe") {
+    if ((name[0] === "recipe") || (name[0] === "serve")) {
       this.setState({
         [name[0]]: value
       });
@@ -105,7 +106,9 @@ class CreateRecipe extends React.Component {
         <div>This is create Recipe Page</div>
         <form onSubmit={this.handleSubmit}>
           <div>Name</div>
-          <input type="text" name="recipe" onChange={this.handleChange}/>
+          <input type="text" name="recipe" onChange={this.handleChange} />
+          <div>Serve</div>
+          <input type="number" min="0" name="serve" onChange={this.handleChange}/>
           <div>Ingredients</div>
           <table>
             <thead>

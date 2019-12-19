@@ -18,7 +18,12 @@ class Api::RecipesController < ApplicationController
     recipe_data = params.require(:state)
     p "!!!!!!"
     p recipe_data
-    Recipe
+    Recipe.create(
+      user_id: recipe_data["user_id"],
+      name: recipe_data["recipe"],
+      serve: recipe_data["serve"],
+      instruction: recipe_data["instructions"],
+    )
     render json: { message: "ok" }, status: :ok
   end
 end
