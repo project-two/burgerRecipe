@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { navigate } from "@reach/router"
+import {FormContainer, ButtonContainer} from './CreateRecipeStyledForm';
+import {H1} from '../../components/GlobalStyles/GlobalStyles'
 
 class CreateRecipe extends React.Component {
   constructor(props) {
@@ -105,12 +107,12 @@ class CreateRecipe extends React.Component {
     let ingredients = this.state.ingredients;
     let instructions = this.state.instructions;
     return (
-      <div>
-        <div>This is create Recipe Page</div>
+      <FormContainer>
+        <H1 logo lg center margin>Create Recipe</H1>
         <form onSubmit={this.handleSubmit}>
-          <div>Name</div>
+          <div>Burger Name</div>
           <input type="text" name="recipe" onChange={this.handleChange} />
-          <div>Serve</div>
+          <div>Serves</div>
           <input type="number" min="0" name="serve" onChange={this.handleChange} />
           <div>Image URL</div>
           <input type="text" name="url" onChange={this.handleChange} />
@@ -130,7 +132,7 @@ class CreateRecipe extends React.Component {
                   <tr key={`ingrd_${idx}`}>
                     <td>{idx+1}</td>
                     <td>
-                      <input type="text" name={`ingrd_qty_${idx}`} onChange={this.handleChange}/>
+                      <input className="input-width" type="text" name={`ingrd_qty_${idx}`} onChange={this.handleChange}/>
                     </td>
                     <td>
                       <select name={`ingrd_unit_${idx}`} value="spoon" onChange={this.handleChange}>
@@ -147,8 +149,10 @@ class CreateRecipe extends React.Component {
               })}
             </tbody>
           </table>
-          <button onClick={this.addIngredient}>+</button>
-          <button onClick={this.dropIngredient}>-</button>
+          <ButtonContainer>
+            <button onClick={this.addIngredient}>+</button>
+            <button onClick={this.dropIngredient}>-</button>
+          </ButtonContainer>
           <div>Steps</div>
           <table>
             <thead>
@@ -161,7 +165,7 @@ class CreateRecipe extends React.Component {
               {instructions.map((step, idx) => {
                 return (
                   <tr key={`step_${idx+1}`}>
-                    <td>{idx}</td>
+                    <td>{idx +1}</td>
                     <td>
                     <input type="text" name={`step_${idx}`} onChange={this.handleChange}/>
                     </td>
@@ -170,11 +174,13 @@ class CreateRecipe extends React.Component {
               })}
             </tbody>
           </table>
-          <button onClick={this.addStep}>+</button>
-          <button onClick={this.dropStep}>-</button>
+          <ButtonContainer>
+            <button onClick={this.addStep}>+</button>
+            <button onClick={this.dropStep}>-</button>
+          </ButtonContainer>
           <input type="submit" value="Submit" />
         </form>
-      </div>
+      </FormContainer>
     );
   }
 }
