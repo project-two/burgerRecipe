@@ -10,6 +10,7 @@ class Navbar extends Component {
 
   render() {
     const user = this.props.user;
+
     return (
       <NavBarContainer>
         <LinkContainer>
@@ -23,14 +24,15 @@ class Navbar extends Component {
             <StyledLink to="/sign-up">Sign Up</StyledLink>
           </div>
         ) : null}
-        { user.isLoggedIn && user.currentUser ?
-            <React.Fragment>
-                <StyledLink to="/user/:user_id">My Recipes</StyledLink>
-                <StyledLink to="/new-recipe">Add new Recipe</StyledLink>
-                <StyledLink to='' onClick={(e)=>this.handleLogoutClick(e)}>{user.currentUser.name} logout</StyledLink>
-            </React.Fragment>
-            :null
-        }
+        {user.isLoggedIn && user.currentUser ? (
+          <React.Fragment>
+            <StyledLink to={`/user/${user.currentUserId}`}>{this.props.user.currentUser}'s Recipes</StyledLink>
+            <StyledLink to="/new-recipe">Add new Recipe</StyledLink>
+            <StyledLink to="" onClick={(e) => this.handleLogoutClick(e)}>
+               Logout
+            </StyledLink>
+          </React.Fragment>
+        ) : null}
       </NavBarContainer>
     );
   }

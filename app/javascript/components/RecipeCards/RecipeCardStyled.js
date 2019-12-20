@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "@reach/router";
 
-// RecipeCardList styles
+// RecipeList styles
 export const RecipesContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -16,6 +16,7 @@ export const RecipeCardContainer = styled.div`
   width: 20%;
   margin: 1%;
   transition: all 0.2s ease-in-out;
+  border: 1px solid #ccc;
 
   &:hover {
     transform: scale(1.03);
@@ -36,7 +37,6 @@ export const RecipeImage = styled.img`
 `;
 export const RecipeDetailsContainer = styled.div`
   padding: 10px;
-  border: 1px solid #ccc;
   border-top: none;
 `;
 
@@ -46,7 +46,8 @@ export const RecipeDetails = styled.p`
 `;
 
 export const RecipeLink = styled(Link)`
-  text-decoration: none;
-  color: rgb(70, 70, 70);
+  -webkit-text-decoration: none !important;
+  text-decoration: none !important;
+  color: rgb(70, 70, 70) !important;
 `;
 

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {LoginFormContainer, LoginFormBG} from './LoginFormStyled';
+import {H1} from './GlobalStyles/GlobalStyles'
 
 class LoginForm extends Component {
   constructor(props) {
@@ -24,39 +26,36 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Login</h1>
+      <LoginFormBG>
+        <LoginFormContainer>
+          <H1 logo lg center margin light>Login</H1>
+          <p>{this.props.errMessage}</p>
 
-        <p>{this.props.errMessage}</p>
+          <label htmlFor="email"></label>
+          <input
+            type="text"
+            placeholder= "email"
+            name="email"
+            required
+            value={this.state.email}
+            onChange={this.handleEmailChange}
+          />
 
-        <label htmlFor="email">
-          <b>Email</b>
-        </label>
-        <input
-          type="text"
-          placeholder="Enter Email"
-          name="email"
-          required
-          value={this.state.email}
-          onChange={this.handleEmailChange}
-        />
+          <label htmlFor="psw"></label>
+          <input
+            type="password"
+            placeholder="password"
+            name="psw"
+            required
+            value={this.state.password}
+            onChange={this.handlePasswordChange}
+          />
 
-        <label htmlFor="psw">
-          <b>Password</b>
-        </label>
-        <input
-          type="password"
-          placeholder="Enter Password"
-          name="psw"
-          required
-          value={this.state.password}
-          onChange={this.handlePasswordChange}
-        />
-
-        <div className="clearfix">
-          <button onClick={() => this.onLoginClick()}>Login</button>
-        </div>
-      </div>
+          <div className="clearfix">
+            <button onClick={() => this.onLoginClick()}>Login</button>
+          </div>
+        </LoginFormContainer>
+      </LoginFormBG>
     );
   }
 }
