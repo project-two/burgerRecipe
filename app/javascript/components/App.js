@@ -12,7 +12,6 @@ import SignUp from "../pages/SignUp";
 import Navbar from "./Navbar/Navbar";
 
 // idk
-import { SERVER_URL } from "../config";
 import axios from "axios";
 
 class App extends Component {
@@ -36,7 +35,7 @@ class App extends Component {
     let auth = JSON.parse(sessionStorage.getItem("auth"));
     if (!auth) return;
     axios
-      .get(`${SERVER_URL}/api/users/${auth.userId}`, {
+      .get(`/api/users/${auth.userId}`, {
         headers: { Authorization: `Bearer ${auth.token}` }
       })
       .then((response) => {
@@ -71,7 +70,7 @@ class App extends Component {
   }
 
   handleLogout = () => {
-    sessionStorage.setItem("auth", null);
+    sessionStorage.removeItem("auth");
     this.setState({ currentUser: null, isLoggedIn: false });
     navigate("/");
   }
