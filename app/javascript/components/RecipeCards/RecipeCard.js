@@ -3,21 +3,23 @@ import PropTypes from 'prop-types';
 import { RecipeImage,RecipeCardContainer,RecipeDetailsContainer,RecipeDetails,RecipeLink} from "./RecipeCardStyled";
 
 
-
 function RecipeCard(props) {
-  return (
-    <RecipeCardContainer>
-        <RecipeLink to='/recipe/:recipe_id'> 
-            <RecipeImage src={props.image} /> {/* props.image */}
-            <RecipeDetailsContainer>
-                <RecipeDetails>The Big Juciy</RecipeDetails> {/* props.burgerName */}
-                <RecipeDetails light>by username</RecipeDetails> {/* props.username */}
-                <RecipeDetails light><i className="far fa-thumbs-up"></i> 55 </RecipeDetails>{/* props.likes */}
-            </RecipeDetailsContainer>
-        </RecipeLink>
-    </RecipeCardContainer>
-  );
+
+    return (
+        <RecipeCardContainer>
+            <RecipeLink to={`/recipe/${props.recipeId}`}> 
+                <RecipeImage src={props.image} />
+                <RecipeDetailsContainer>
+                <RecipeDetails>{props.burgerName}</RecipeDetails>  
+                <RecipeDetails light>{props.username}</RecipeDetails>
+                <RecipeDetails light><i className="far fa-thumbs-up"></i> {props.likes}</RecipeDetails>
+                </RecipeDetailsContainer>
+            </RecipeLink>
+        </RecipeCardContainer>
+    );
 }
+
+
 
 // RecipeCard.propTypes = {
 //   image: PropTypes.string.isRequired,

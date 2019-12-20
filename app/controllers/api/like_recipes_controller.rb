@@ -10,7 +10,8 @@ class Api::LikeRecipesController < ApplicationController
       recipes = LikeRecipe.all
       if request.query_parameters.key?("recipe")
         recipes = recipes.where("recipe_id": request.query_parameters["recipe"])
-      elsif request.query_parameters.key?("user")
+      end
+      if request.query_parameters.key?("user")
         recipes = recipes.where("user_id": request.query_parameters["user"])
       end
       recipes_json = recipes.as_json

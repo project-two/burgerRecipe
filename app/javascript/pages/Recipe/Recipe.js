@@ -1,52 +1,103 @@
 import React, { Component } from "react";
-import { RecipeImage, RecipeContainer } from "./RecipeStyle";
+import { Link } from "@reach/router";
+import {
+  RecipeImage,
+  RecipeContainer,
+  BurgerName,
+  RecipeHeading,
+  PostDetailsContainer,
+  PostMethodContainer
+} from "./RecipeStyle";
+import Likes from "../Likes/Likes";
 import axios from "axios";
 
 class Recipe extends Component {
   state = {
     recipe: {
-      burgerName: "Any burger",
-      userName: "Kay",
-      image:
-        "https://images.unsplash.com/photo-1428660386617-8d277e7deaf2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80",
-      likes: "150",
-      ingredients: ["Cheese", "Fish", "Chilli"],
-      method: ["#1 Frying", "#2 Toppings", "#3 Eat"]
-    }
+      ingredients: [],
+      instruction:[],
+    },
+    loged_in: false
   };
 
-  componentDidMount() {
-    console.log(this.state.recipe.burgerName);
-    //   axios
-    //     .get("")
-    //     .then(function(response) {
-    //       //handle success})
-    //       this.setState({ image: response });
-    //       console.log(response);
-    //     })
-    //     .catch(function(error) {
-    //       // handle error
-    //       console.log(error);
-    //     });
+  componentWillMount() {
+    this.loadRecipe();
+  }
+
+  loadRecipe() {
+    let currentRecipe = this.props.recipeId;
+    axios
+      .get(`/api/recipes?recipe=${currentRecipe}`)
+      .then(res => {
+        let data = res.data[0];
+        data["instruction"] = JSON.parse(data["instruction"]);
+        this.setState({ recipe: data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {
+    const recipe = this.state.recipe;
+    const recipe_id = this.props.recipeId;
+    console.log(recipe_id)
     return (
       <RecipeContainer>
-        <div> {this.state.recipe.burgerName} </div>
-        <div> {this.state.recipe.userName} </div>
-        <RecipeImage src={this.state.recipe.image} />
-        <div> {this.state.recipe.likes} </div>
-        <ul>
-          {this.state.recipe.ingredients.map((recipe) => (
-            <li>{recipe}</li>
-          ))}
-        </ul>
-        <ul>
-          {this.state.recipe.method.map((method) => (
-            <li>{method}</li>
-          ))}
-        </ul>
+        <PostDetailsContainer>
+          <BurgerName>{recipe.name}</BurgerName>
+          <p>
+            by <Link to={`/user/${recipe.user_id}`}>{recipe.username}</Link>
+          </p>
+          <RecipeImage src={recipe.url} />
+          <Likes recipe_id={recipe_id} />
+        </PostDetailsContainer>
+
+        <PostMethodContainer>
+          <RecipeHeading>Ingredients</RecipeHeading>
+          <table>
+            <thead>
+              <tr>
+                <td>#</td>
+                <td>qty</td>
+                <td>unit</td>
+                <td>name</td>
+              </tr>
+            </thead>
+            <tbody>
+              {recipe.ingredients.map((recipe, idx) => (
+                <tr key={`ingrd_${idx}`}>
+                  <td>{idx}</td>
+                  <td>{recipe.qty}</td>
+                  <td>{recipe.unit}</td>
+                  <td>{recipe.name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <RecipeHeading>Method</RecipeHeading>
+          <table>
+            <thead>
+              <tr>
+                <td>#</td>
+                <td>step</td>
+              </tr>
+            </thead>
+            <tbody>
+              {recipe.instruction.map((step, idx) => (
+                <tr key={`step_${idx}`}>
+                  <td>{idx}</td>
+                  <td>{step}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div>
+            {/* {this.state.recipe.method.map(method => (
+              <p>{method}</p>
+            ))} */}
+          </div>
+        </PostMethodContainer>
       </RecipeContainer>
     );
   }

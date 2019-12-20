@@ -3,10 +3,15 @@ import { SearchBox, SearchLable, SearchInput, SearchButton } from './SearchStyle
 
 
 export default function Search() {
+    
+    const handleSearch = () => { 
+        
+    }
+    
     return (
         <SearchBox>
             <SearchLable>Search</SearchLable>
-            <SearchInput placeholder='Beef, Chicken, Vegetarian'/>
+            <SearchInput placeholder='Beef, Chicken, Vegetarian' onChange={handleSearch}/>
             <SearchButton><i className="fas fa-search fa-lg"></i></SearchButton>
         </SearchBox>
     )

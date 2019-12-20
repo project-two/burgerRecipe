@@ -43,7 +43,10 @@ master branch is for deployment
 | localhost:3000/api/like_recipes?count&recipe=8 | gives likes count on one recipe| 1 |
 | localhost:3000/api/like_recipes?recipe=8       | gives details likes on one recipe (who liked it)||
 | localhost:3000/api/like_recipes?user=10        | details likes on one user (liked what recipes)||
+| (POST)localhost:3000/api/like_recipes?user=10&recipe=8 | |
+| (DELETE)localhost:3000/api/like_recipes?user=10&recipe=8| |
 | localhost:3000/api/ingredients/3               | ingredient details | |
 | localhost:3000/api/ingredients/3?name          | ingredient name    | chicken |
 | localhost:3000/api/recipes?user=10             | get recipe of a user| |
 | localhost:3000/api/recipes?recipe=8            | get details of a recipe | |
+| (POST) localhost:3000/api/recipes              |   |

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "@reach/router";
 
-// RecipeCardList styles
+// RecipeList styles
 export const RecipesContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -46,7 +46,8 @@ export const RecipeDetails = styled.p`
 `;
 
 export const RecipeLink = styled(Link)`
-  text-decoration: none;
-  color: rgb(70, 70, 70);
+  -webkit-text-decoration: none !important;
+  text-decoration: none !important;
+  color: rgb(70, 70, 70) !important;
 `;
 

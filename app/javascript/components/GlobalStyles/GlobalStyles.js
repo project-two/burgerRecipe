@@ -13,13 +13,12 @@ export const Logo = styled.h1`
     font-family: 'Pacifico', cursive;
     color: #fff;
     font-size: 5rem;
-    margin: 0 0 20px;
+    margin: 0 0 50px;
 `
 export const StyledLink = styled(Link)`
-    
     font-family: ${props => props.logo ? 'Pacifico': 'Montserrat' };
     font-weight: 700;
-    text-decoration: none;
+    text-decoration: none !important;
     color: rgb(70, 70, 70);
     margin: 0 15px;
     &:hover {
