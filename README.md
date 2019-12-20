@@ -37,16 +37,16 @@ master branch is for deployment
 
 | link                                           | Usage                                           | return  |
 | ---------------------------------------------- | ----------------------------------------------- | -----|
-| localhost:3000/api/users/10                    | get user name | kay |
-| localhost:3000/api/recipes                     | all recipes       |  |
-| localhost:3000/api/like_recipes?count          | gives all likes count | 3 |
-| localhost:3000/api/like_recipes?count&recipe=8 | gives likes count on one recipe| 1 |
-| localhost:3000/api/like_recipes?recipe=8       | gives details likes on one recipe (who liked it)||
-| localhost:3000/api/like_recipes?user=10        | details likes on one user (liked what recipes)||
-| (POST)localhost:3000/api/like_recipes?user=10&recipe=8 | |
-| (DELETE)localhost:3000/api/like_recipes?user=10&recipe=8| |
-| localhost:3000/api/ingredients/3               | ingredient details | |
-| localhost:3000/api/ingredients/3?name          | ingredient name    | chicken |
-| localhost:3000/api/recipes?user=10             | get recipe of a user| |
-| localhost:3000/api/recipes?recipe=8            | get details of a recipe | |
-| (POST) localhost:3000/api/recipes              |   |
+| /api/users/10                    | get user name | kay |
+| /api/recipes                     | all recipes       |  |
+| /api/like_recipes?count          | gives all likes count | 3 |
+| /api/like_recipes?count&recipe=8 | gives likes count on one recipe| 1 |
+| /api/like_recipes?recipe=8       | gives details likes on one recipe (who liked it)||
+| /api/like_recipes?user=10        | details likes on one user (liked what recipes)||
+| (POST)/api/like_recipes?user=10&recipe=8 | |
+| (DELETE)/api/like_recipes?user=10&recipe=8| |
+| /api/ingredients/3               | ingredient details | |
+| /api/ingredients/3?name          | ingredient name    | chicken |
+| /api/recipes?user=10             | get recipe of a user| |
+| /api/recipes?recipe=8            | get details of a recipe | |
+| (POST) /api/recipes              |   |
