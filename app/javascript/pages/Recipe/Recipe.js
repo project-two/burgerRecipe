@@ -8,6 +8,7 @@ import {
   PostDetailsContainer,
   PostMethodContainer
 } from "./RecipeStyle";
+
 import Likes from "../Likes/Likes";
 import axios from "axios";
 
@@ -41,7 +42,7 @@ class Recipe extends Component {
   render() {
     const recipe = this.state.recipe;
     const recipe_id = this.props.recipeId;
-    console.log(recipe_id)
+
     return (
       <RecipeContainer>
         <PostDetailsContainer>
@@ -50,7 +51,7 @@ class Recipe extends Component {
             by <Link to={`/user/${recipe.user_id}`}>{recipe.username}</Link>
           </p>
           <RecipeImage src={recipe.url} />
-          <Likes recipe_id={recipe_id} />
+          <Likes recipe_id={recipe_id} margin />
         </PostDetailsContainer>
 
         <PostMethodContainer>
@@ -67,7 +68,7 @@ class Recipe extends Component {
             <tbody>
               {recipe.ingredients.map((recipe, idx) => (
                 <tr key={`ingrd_${idx}`}>
-                  <td>{idx}</td>
+                  <td>{idx + 1}</td>
                   <td>{recipe.qty}</td>
                   <td>{recipe.unit}</td>
                   <td>{recipe.name}</td>
@@ -86,7 +87,7 @@ class Recipe extends Component {
             <tbody>
               {recipe.instruction.map((step, idx) => (
                 <tr key={`step_${idx}`}>
-                  <td>{idx}</td>
+                  <td> {idx + 1}</td>
                   <td>{step}</td>
                 </tr>
               ))}

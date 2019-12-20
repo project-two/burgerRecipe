@@ -17,16 +17,36 @@ export const PostDetailsContainer = styled.div`
 export const PostMethodContainer = styled.div`
   width: 40%;
   margin: 12% 2% 0;
+  
+  & td {
+    width: 70px;
+  }
+  & td:first-child {
+    width: 30px;
+  }
+
+  & td:last-child  {
+    width: 150px;
+  }
+  
+
+  & thead {
+    font-weight: bold;
+  }
+
 
   @media (max-width: 768px) {
     width: 100%;
     margin: 2.5%;
   }
 
+
+
 `
 export const RecipeImage = styled.img`
   width: 100%;
   height: 50vh;
+  margin: 10px 0;
   object-fit: cover;
 `;
 
@@ -42,7 +62,4 @@ export const RecipeHeading = styled.h4`
   font-size: 2rem;  
   color: #ccc;
   margin: 20px 0;
-`
-export const Liked = styled.i`
-  
 `

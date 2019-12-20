@@ -10,23 +10,14 @@ import { RecipesToggleButton} from '../MyRecipes/MyRecipesStyled'
 export default class MyRecipes extends Component {
   
   state = {
-    recipe: [],
-    savedRecipe: [
-        {
-            name: 'The Scomo Squiser',
-            url: 'https://images.unsplash.com/photo-1524121963016-6d7476758c04?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80'
-        },
-        {
-            name: 'The Scomo Squiser',
-            url: 'https://images.unsplash.com/photo-1524121963016-6d7476758c04?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80'
-        }
-    ],
-    recipeType: true
+        recipe: [],
+        savedRecipe: [],
+        recipeType: true
     }
 
     componentDidMount() {
         let currentUser = this.props.userId;
-        console.log(currentUser)
+        
         axios.get(`/api/recipes?user=${currentUser}`) 
             .then( res => { 
                 this.setState({ recipe: res.data })
@@ -34,6 +25,16 @@ export default class MyRecipes extends Component {
             .catch( error =>  {
                 console.log(error); 
         })
+
+    
+        axios.get(`/api/like_recipes?user=${currentUser}`) 
+            .then( res => { 
+                this.setState({ savedRecipe: res.data })
+            })
+            .catch( error =>  {
+                console.log(error); 
+        })
+
     }  
 
     yourRecipeHandler = () => {
@@ -46,9 +47,9 @@ export default class MyRecipes extends Component {
             recipeType: false
         })
     }
-
+    
     render() {
-
+        console.log(this.state.savedRecipe)
         return (
         <div>
         <React.Fragment>
@@ -57,8 +58,8 @@ export default class MyRecipes extends Component {
             <RecipesToggleButton active={!this.state.recipeType} onClick={this.savedRecipeHandler}>Saved Recipes</RecipesToggleButton>
         </Container>
             { this.state.recipeType ? 
-                <RecipeList recipe={this.state.recipe}/> :
-                <RecipeList recipe={this.state.savedRecipe}/> }
+                <RecipeList recipe={this.state.recipe} /> :
+                <RecipeList recipe={this.state.savedRecipe} />}
         </React.Fragment>
         </div>
         )

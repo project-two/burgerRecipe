@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import Likes from '../../pages/Likes/Likes'
 import { RecipeImage,RecipeCardContainer,RecipeDetailsContainer,RecipeDetails,RecipeLink} from "./RecipeCardStyled";
 
 
@@ -10,11 +11,13 @@ function RecipeCard(props) {
             <RecipeLink to={`/recipe/${props.recipeId}`}> 
                 <RecipeImage src={props.image} />
                 <RecipeDetailsContainer>
-                <RecipeDetails>{props.burgerName}</RecipeDetails>  
-                <RecipeDetails light>{props.username}</RecipeDetails>
-                <RecipeDetails light><i className="far fa-thumbs-up"></i> {props.likes}</RecipeDetails>
+                    <RecipeDetails>{props.burgerName}</RecipeDetails>  
+                    <RecipeDetails light>{props.username}</RecipeDetails>
                 </RecipeDetailsContainer>
             </RecipeLink>
+            <RecipeDetailsContainer> <Likes recipe_id={props.recipeId} /></RecipeDetailsContainer>
+           
+            {/* light><i className="far fa-thumbs-up"></i> {props.likes}</RecipeDetails> */}
         </RecipeCardContainer>
     );
 }

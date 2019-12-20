@@ -11,12 +11,13 @@ const RecipeList = (props) => {
                     <RecipeCard 
                     image={recipe.url}
                     burgerName={recipe.name}
-                    recipeId={recipe.id}
+                    recipeId={recipe.recipe_id ? recipe.recipe_id : recipe.id}
                     username={recipe.username}
                     likes={recipe.like_count}
                     key={recipe.id}
                     />
-               )}
+               ) 
+            }
             </RecipesContainer>
         </div>
     )

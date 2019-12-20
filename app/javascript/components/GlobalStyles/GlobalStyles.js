@@ -7,7 +7,12 @@ export const Container = styled.div`
     margin: 40px 20px
 `
 export const H1 = styled.h1`
-    font-size: 1.6rem;
+    font-size: ${props => props.lg ? '3rem': '1.6rem' };
+    font-family: ${props => props.logo ? 'Pacifico': 'Montserrat' };
+    text-align: ${props => props.center ? 'center': 'none' };
+    margin: ${props => props.margin ? '0px': '' };
+    color: ${props => props.light ? '#fff': '' };
+    
 `
 export const Logo = styled.h1`
     font-family: 'Pacifico', cursive;

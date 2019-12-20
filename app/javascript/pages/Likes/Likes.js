@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import {LikeContainer} from "./LikesStyled"
 
 class Likes extends Component {
   state = {
@@ -92,12 +93,18 @@ class Likes extends Component {
 
   render() {
     return (
-      <i
-        onClick={this.clickHandler}
-        className={`${this.state.liked ? "fas" : "far"} fa-thumbs-up fa-lg`}
-      >
-        {` ${this.state.like_count}`}
-      </i>
+      <LikeContainer>
+        <i
+    
+          onClick={this.clickHandler}
+          className={`${this.state.liked ? "fas" : "far"} fa-thumbs-up fa-lg`}
+        >
+        </i>
+        <span>
+          {`${this.state.like_count}`}
+        </span>  
+      </LikeContainer>  
+      
     );
   }
 }

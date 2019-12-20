@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {LoginFormContainer, LoginFormBG} from './LoginFormStyled';
+import {H1} from './GlobalStyles/GlobalStyles'
 
 class SignupForm extends Component {
   constructor(props) {
@@ -36,66 +38,60 @@ class SignupForm extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Sign Up</h1>
+      <LoginFormBG>
+        <LoginFormContainer>
+          <H1 logo lg center margin light>Sign Up</H1>
 
-        <label htmlFor="name">
-          <b>Name</b>
-        </label>
-        <input
-          type="text"
-          placeholder="Enter your Name"
-          name="name"
-          required
-          value={this.state.name}
-          onChange={this.handleNameChange}
-        />
+          <label htmlFor="name"></label>
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            required
+            value={this.state.name}
+            onChange={this.handleNameChange}
+          />
 
-        <label htmlFor="email">
-          <b>Email</b>
-        </label>
-        <input
-          type="text"
-          placeholder="Enter Email"
-          name="email"
-          required
-          value={this.state.email}
-          onChange={this.handleEmailChange}
-        />
+          <label htmlFor="email"></label>
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            required
+            value={this.state.email}
+            onChange={this.handleEmailChange}
+          />
 
-        <label htmlFor="psw">
-          <b>Password</b>
-        </label>
-        <input
-          type="password"
-          placeholder="Enter Password"
-          name="psw"
-          required
-          value={this.state.password}
-          onChange={this.handlePasswordChange}
-        />
+          <label htmlFor="psw"></label>
+          <input
+            type="password"
+            placeholder="Password"
+            name="psw"
+            required
+            value={this.state.password}
+            onChange={this.handlePasswordChange}
+          />
 
-        <label htmlFor="psw-repeat">
-          <b>Repeat Password</b>
-        </label>
-        <input
-          type="password"
-          placeholder="Repeat Password"
-          name="psw-repeat"
-          required
-          value={this.state.password_confirmation}
-          onChange={this.handleConfirmPasswordChange}
-        />
+          <label htmlFor="psw-repeat"></label>
+          <input
+            type="password"
+            placeholder="Repeat Password"
+            name="psw-repeat"
+            required
+            value={this.state.password_confirmation}
+            onChange={this.handleConfirmPasswordChange}
+          />
 
-        <div className="clearfix">
-          <button type="button" onClick={() => this.onCancelClick()}>
-            Cancel
-          </button>
-          <button type="submit" onClick={() => this.onSignupClick()}>
-            Sign Up
-          </button>
-        </div>
-      </div>
+          <div className="clearfix">
+            {/* <button type="button" onClick={() => this.onCancelClick()}>
+              Cancel
+            </button> */}
+            <button type="submit" onClick={() => this.onSignupClick()}>
+              Sign Up
+            </button>
+          </div>
+        </LoginFormContainer>
+      </LoginFormBG>
     );
   }
 }
