@@ -71,7 +71,7 @@ class App extends Component {
   }
 
   handleLogout = () => {
-    sessionStorage.setItem("auth", null);
+    sessionStorage.removeItem("auth");
     this.setState({ currentUser: null, isLoggedIn: false });
     navigate("/");
   }
